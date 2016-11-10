@@ -9,7 +9,7 @@
     
 	<context:annotation-config />
 
-	<bean id="expressionEvaluator" class="stormapplied.githubcommits.topology.ExpressionEvaluatorService" scope="singleton">
+	<bean id="expressionEvaluator" class="com.shubin.services.ExpressionEvaluatorService" scope="singleton">
 		<constructor-arg value="nashorn" />
 	</bean>
 	
