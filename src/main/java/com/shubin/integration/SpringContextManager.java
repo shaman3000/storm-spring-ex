@@ -11,6 +11,7 @@ public class SpringContextManager {
 
     public static final String SPRING_CONTEXT_MANAGER = "SPRING_CONTEXT_MANAGER";
 
+    // TODO: May be, it must be  Map<TopologyContext, AbstractApplicationContext>???
     private volatile AbstractApplicationContext workerApplicationContext;
 
     static {
