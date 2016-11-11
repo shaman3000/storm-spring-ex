@@ -1,11 +1,13 @@
 package com.shubin.example;
 
+import com.shubin.services.ExpressionEvaluatorService;
 import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseRichSpout;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Values;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
@@ -21,14 +23,14 @@ public class GenerationSpout extends BaseRichSpout {
 
     private SpoutOutputCollector collector;
 
-    //@Autowired
-    //ExpressionEvaluatorService evaluatorService;
+    @Autowired
+    private ExpressionEvaluatorService evaluatorService;
 
 
     @Override
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
         this.collector = collector;
-        //System.out.println(evaluatorService);
+        System.out.println(evaluatorService);
     }
 
     @Override
