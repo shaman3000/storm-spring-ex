@@ -1,7 +1,10 @@
 package com.shubin.integration;
 
+import org.apache.storm.task.TopologyContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 /**
  * Created by sshubin on 10.11.2016.
@@ -22,28 +25,13 @@ public class SpringContextManager {
         return WorkerNodeContext.getInstance().get(SPRING_CONTEXT_MANAGER);
     }
 
-    public void startup(String springConfigFile) throws Exception {
+    public AbstractApplicationContext getApplicationContext(Map conf, TopologyContext context) {
         if (workerApplicationContext == null)
-            synchronized (SpringContextManager.class) {
+            synchronized (this) {
                 if (workerApplicationContext == null)
-                    workerApplicationContext = new ClassPathXmlApplicationContext(springConfigFile);
+                    workerApplicationContext = new ClassPathXmlApplicationContext("services.xml");
             }
-
-    }
-
-    public void shutdown() {
-        if (workerApplicationContext != null)
-            synchronized (SpringContextManager.class) {
-                if (workerApplicationContext != null) {
-                    workerApplicationContext.close();
-                    workerApplicationContext = null;
-                }
-            }
-    }
-
-    public AbstractApplicationContext getApplicationContext() {
         return workerApplicationContext;
     }
-
 
 }

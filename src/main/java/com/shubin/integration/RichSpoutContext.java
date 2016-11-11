@@ -23,7 +23,7 @@ public class RichSpoutContext extends BaseRichSpout {
 
     @Override
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
-        delegate.springifyComponent(context.getThisComponentId());
+        delegate.springifyComponent(conf, context, context.getThisComponentId());
         delegate.get().open(conf, context, collector);
     }
 

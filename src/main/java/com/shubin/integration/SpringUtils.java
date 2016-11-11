@@ -8,14 +8,12 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 public class SpringUtils {
 
-
-    public static Object initializeStormComponent(Object bean, String beanName) throws IllegalStateException {
-        AbstractApplicationContext spring = SpringContextManager.getInstance().getApplicationContext();
-        if (spring == null)
-            throw new IllegalStateException("Spring Context is not initialized.");
+    public static Object initializeStormComponent(AbstractApplicationContext springContext, Object bean, String beanName) {
+        if (springContext == null || bean == null)
+            throw new IllegalStateException();
         Object wrappedBean = bean;
-        spring.getBeanFactory().autowireBean(wrappedBean);
-        wrappedBean = spring.getBeanFactory().initializeBean(wrappedBean, beanName);
+        springContext.getBeanFactory().autowireBean(wrappedBean);
+        wrappedBean = springContext.getBeanFactory().initializeBean(wrappedBean, beanName);
         return wrappedBean;
     }
 

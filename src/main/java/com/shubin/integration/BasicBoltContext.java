@@ -24,7 +24,7 @@ public class BasicBoltContext extends BaseBasicBolt {
 
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
-        delegate.springifyComponent(context.getThisComponentId());
+        delegate.springifyComponent(stormConf, context, context.getThisComponentId());
         delegate.get().prepare(stormConf, context);
     }
 
