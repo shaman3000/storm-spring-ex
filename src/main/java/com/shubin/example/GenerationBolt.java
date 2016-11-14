@@ -1,5 +1,6 @@
 package com.shubin.example;
 
+import com.shubin.api.LoggingSpec;
 import com.shubin.services.ExpressionEvaluatorService;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
@@ -19,9 +20,9 @@ public class GenerationBolt extends BaseBasicBolt {
 
     public static final String COMPONENT_ID = "generation-bolt";
 
-
     @Autowired
     private ExpressionEvaluatorService expressionEvaluator;
+
 
     @PostConstruct
     protected void postConstruct() {
@@ -34,6 +35,7 @@ public class GenerationBolt extends BaseBasicBolt {
     }
 
     @Override
+    @LoggingSpec
     public void execute(Tuple input, BasicOutputCollector collector) {
         String script = "print('Bolt execute: scripted tick [" + input.getStringByField("tick") + "]');";
         try {

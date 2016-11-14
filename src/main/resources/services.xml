@@ -9,11 +9,25 @@
     
 	<context:annotation-config />
 
+
+
 	<bean id="expressionEvaluator" class="com.shubin.services.ExpressionEvaluatorService" scope="singleton">
 		<constructor-arg value="nashorn" />
 	</bean>
-	
-	
-	
+
+
+	<bean id="stormAspectInjectorBean" class="com.shubin.api.impl.StormAspectInjector">
+		<property name="aspectList">
+			<list>
+				<bean class="com.shubin.api.impl.aspects.LoggingAspect" />
+			</list>
+		</property>
+	</bean>
+
+	<bean class="com.shubin.api.impl.StormComponentProcessor" >
+		<property name="stormAspectInjector" ref="stormAspectInjectorBean" />
+	</bean>
+
+
 	
 </beans>

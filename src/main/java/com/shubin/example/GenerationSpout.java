@@ -26,7 +26,6 @@ public class GenerationSpout extends BaseRichSpout {
     @Autowired
     private ExpressionEvaluatorService evaluatorService;
 
-
     @Override
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
         this.collector = collector;
