@@ -19,6 +19,7 @@ public class GenerationBolt extends BaseBasicBolt {
 
     public static final String COMPONENT_ID = "generation-bolt";
 
+
     @Autowired
     private ExpressionEvaluatorService expressionEvaluator;
 
