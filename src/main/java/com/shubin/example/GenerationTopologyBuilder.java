@@ -10,15 +10,13 @@ import org.apache.storm.topology.TopologyBuilder;
 
 public class GenerationTopologyBuilder {
 
-
     public static TopologyBuilder getStormBuilder() {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout(GenerationSpout.COMPONENT_ID, new RichSpoutContext(new GenerationSpout()) );
-        builder.setBolt(GenerationBolt.COMPONENT_ID, new BasicBoltContext(new GenerationBolt()) )
+        builder.setBolt(GenerationBolt.COMPONENT_ID, new BasicBoltContext(new GenerationBolt()) ).setNumTasks(2)
                .shuffleGrouping(GenerationSpout.COMPONENT_ID);
         return builder;
     }
-
 
 
 }

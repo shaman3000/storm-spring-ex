@@ -7,6 +7,7 @@ import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +38,7 @@ public class GenerationBolt extends BaseBasicBolt {
     @Override
     @LoggingSpec
     public void execute(Tuple input, BasicOutputCollector collector) {
+        LoggerFactory.getLogger(GenerationBolt.class).info("BOLT-EXECUTE");
         String script = "print('Bolt execute: scripted tick [" + input.getStringByField("tick") + "]');";
         try {
             if (expressionEvaluator != null)

@@ -6,6 +6,7 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -24,8 +25,14 @@ public class BasicBoltContext extends BaseBasicBolt {
 
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
+        System.out.println("-------------------------- PREPARE BOLT --------------------------");
         delegate.springifyComponent(stormConf, context, context.getThisComponentId());
         delegate.get().prepare(stormConf, context);
+    }
+
+    @Override
+    public void cleanup() {
+        System.out.println("-------------------------- CLEANUP BOLT --------------------------");
     }
 
     @Override
@@ -37,5 +44,16 @@ public class BasicBoltContext extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
         delegate.get().execute(input, collector);
     }
+
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        System.out.println("-------------------------- WRITE BOLT --------------------------");
+        stream.defaultWriteObject();
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        System.out.println("-------------------------- READ BOLT --------------------------");
+        stream.defaultReadObject();
+    }
+
 
 }
