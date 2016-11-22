@@ -3,12 +3,15 @@ package com.shubin.api.impl;
 import org.apache.storm.topology.base.BaseComponent;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by sshubin on 14.11.2016.
  */
 
+@Component
 public class StormComponentProcessor implements BeanPostProcessor {
 
     private StormAspectInjector stormAspectInjector;
@@ -39,6 +42,7 @@ public class StormComponentProcessor implements BeanPostProcessor {
         return stormAspectInjector;
     }
 
+    @Autowired
     public void setStormAspectInjector(StormAspectInjector stormAspectInjector) {
         this.stormAspectInjector = stormAspectInjector;
     }

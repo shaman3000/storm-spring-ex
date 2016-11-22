@@ -1,4 +1,4 @@
-package com.shubin.api.impl;
+package com.shubin.api.impl.aspects;
 
 import org.springframework.aop.framework.ProxyFactory;
 

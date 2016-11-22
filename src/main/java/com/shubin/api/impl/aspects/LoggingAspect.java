@@ -1,7 +1,6 @@
 package com.shubin.api.impl.aspects;
 
 import com.shubin.api.LoggingSpec;
-import com.shubin.api.impl.AbstractAspect;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.ClassFilter;

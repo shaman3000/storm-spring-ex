@@ -1,5 +1,6 @@
 package com.shubin.api.impl;
 
+import com.shubin.api.impl.aspects.AbstractAspect;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.BeansException;
 

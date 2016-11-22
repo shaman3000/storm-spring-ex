@@ -1,6 +1,5 @@
 package com.shubin.example;
 
-import com.shubin.api.ProcessingService;
 import com.shubin.services.ExpressionEvaluatorService;
 import com.shubin.services.LockManager;
 import org.apache.storm.spout.SpoutOutputCollector;
@@ -28,10 +27,10 @@ public class GenerationSpout extends BaseRichSpout {
     @Autowired
     private ExpressionEvaluatorService evaluatorService;
 
+
+
     @Autowired
     private LockManager lockManager;
-
-    private ProcessingService processingService;
 
     @Override
     public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
