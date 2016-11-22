@@ -27,18 +27,42 @@
 			<!-- in a real topology that will be deploy to a real cluster, scope should 
 				be set to provided as shown below. we're keeping it in default 'compile' 
 				scope to allow for easy execution with maven in local cluster mode -->
-			<scope>provided</scope>
+			<!-- <scope>provided</scope> -->
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.12.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.10.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.193</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.4.Final</version>
+		</dependency>
+
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
             <version>6.5.0.Final</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-compiler</artifactId>
             <version>6.5.0.Final</version>
-        </dependency> 		
+        </dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -2,7 +2,7 @@ package com.shubin;
 
 import com.shubin.example.GenerationTopologyBuilder;
 import org.apache.storm.Config;
-import org.apache.storm.StormSubmitter;
+import org.apache.storm.LocalCluster;
 import org.apache.storm.generated.StormTopology;
 import org.apache.storm.topology.TopologyBuilder;
 
@@ -21,16 +21,16 @@ public class Starter {
         // LocalCluster startup
         Config config = new Config();
         config.setDebug(false);
-        config.setNumWorkers(4);
+        config.setNumWorkers(1);
 
         String topologyName = "storm-spring-ex";
-        //LocalCluster cluster = new LocalCluster();
-        //cluster.submitTopology(topologyName, config, topology);
-        StormSubmitter.submitTopology(topologyName, config, topology);
+        LocalCluster cluster = new LocalCluster();
+        cluster.submitTopology(topologyName, config, topology);
+        // StormSubmitter.submitTopology(topologyName, config, topology);
 
-        //System.in.read(); // await
-        //cluster.killTopology(topologyName);
-        //cluster.shutdown();
+        System.in.read(); // await
+        cluster.killTopology(topologyName);
+        cluster.shutdown();
 
     }
 

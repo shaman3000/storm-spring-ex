@@ -1,6 +1,7 @@
 package com.shubin.integration;
 
 import org.apache.storm.task.TopologyContext;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,8 +29,11 @@ public class SpringContextManager {
     public AbstractApplicationContext getApplicationContext(Map conf, TopologyContext context) {
         if (workerApplicationContext == null)
             synchronized (this) {
-                if (workerApplicationContext == null)
+                if (workerApplicationContext == null) {
+                    long start = System.currentTimeMillis();
                     workerApplicationContext = new ClassPathXmlApplicationContext("services.xml");
+                    LoggerFactory.getLogger(SpringContextManager.class).info("Spring context initialized in " + (System.currentTimeMillis() - start) + "ms.");
+                }
             }
         return workerApplicationContext;
     }

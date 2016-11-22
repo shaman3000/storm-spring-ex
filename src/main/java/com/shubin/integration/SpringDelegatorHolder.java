@@ -30,9 +30,13 @@ public class SpringDelegatorHolder<C> implements Serializable {
 
     public void springifyComponent(Map conf, TopologyContext context, String beanName) {
         if (value != null && !springInialized) {
-            value = SpringUtils.initializeStormComponent(
-                        SpringContextManager.getInstance().getApplicationContext(conf, context), value, beanName);
-            springInialized = true;
+            try {
+                value = SpringUtils.initializeStormComponent(
+                            SpringContextManager.getInstance().getApplicationContext(conf, context), value, beanName);
+                springInialized = true;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
